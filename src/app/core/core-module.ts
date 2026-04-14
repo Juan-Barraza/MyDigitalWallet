@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { AuthService } from './services/auth/auth';
+import { FirestoreService } from './services/firestore/firestore';
 
 
 
@@ -7,6 +9,10 @@ import { CommonModule } from '@angular/common';
   declarations: [],
   imports: [
     CommonModule
+  ],
+  providers: [
+    AuthService,
+    FirestoreService
   ]
 })
 export class CoreModule { }
