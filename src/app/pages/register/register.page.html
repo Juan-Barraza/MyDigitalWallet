@@ -1,0 +1,100 @@
+<ion-content [fullscreen]="true">
+  <div class="register-container">
+    <div class="register-header">
+      <h1 class="headline">Register</h1>
+      <p class="subtext">Create your account</p>
+    </div>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+      <div class="form-with-gap">
+        <div class="form-group-gap">
+          <label>First Name</label>
+          <app-input
+            [control]="registerForm.get('first_name')"
+            type="text"
+            placeholder="John"
+          ></app-input>
+        </div>
+
+        <div class="form-group-gap">
+          <label>Last Name</label>
+          <app-input
+            [control]="registerForm.get('last_name')"
+            type="text"
+            placeholder="Doe"
+          ></app-input>
+        </div>
+
+        <div class="form-group-gap">
+          <label>Doc Type</label>
+          <ion-select
+            label-placement="stacked"
+            interface="popover"
+            toggle-icon="chevron-down-outline"
+            formControlName="document_type"
+            class="custom-select"
+          >
+            <ion-select-option value="">Select Type</ion-select-option>
+            <ion-select-option value="cc">C.C</ion-select-option>
+            <ion-select-option value="ce">C.E</ion-select-option>
+            <ion-select-option value="passport">Passport</ion-select-option>
+          </ion-select>
+        </div>
+
+        <div class="form-group-gap">
+          <label>Doc Number</label>
+          <app-input
+            [control]="registerForm.get('document_number')"
+            type="text"
+            placeholder="123456789"
+          ></app-input>
+        </div>
+
+        <div class="form-group-gap full-width">
+          <label>Country</label>
+          <app-input
+            [control]="registerForm.get('country')"
+            type="text"
+            placeholder="Colombia"
+          ></app-input>
+        </div>
+
+        <div class="form-group-gap full-width">
+          <label>Email</label>
+          <app-input
+            [control]="registerForm.get('email')"
+            type="email"
+            placeholder="your@email.com"
+          ></app-input>
+        </div>
+
+        <div class="form-group-gap full-width">
+          <label>Password</label>
+          <app-input
+            [control]="registerForm.get('password')"
+            type="password"
+            placeholder="*********"
+          ></app-input>
+        </div>
+      </div>
+      <div class="btn-primary-wrapper">
+        <ion-button
+          expand="block"
+          type="submit"
+          [disabled]="registerForm.invalid || isLoading"
+        >
+          @if (isLoading) {
+          <ion-spinner name="crescent"></ion-spinner>
+          } @else {
+          <span>REGISTER</span>
+          }
+        </ion-button>
+      </div>
+    </form>
+
+    <p class="login-link">
+      I have an account?
+      <span (click)="goToLogin()">Log in</span>
+    </p>
+  </div>
+</ion-content>

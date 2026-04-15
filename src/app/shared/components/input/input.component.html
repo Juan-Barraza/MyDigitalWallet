@@ -1,0 +1,15 @@
+<ion-input
+  [formControl]="control"
+  [type]="showPassword ? 'text' : type"
+  [placeholder]="placeholder"
+  class="custom-input"
+>
+@if (type === 'password') {
+   <ion-icon
+    [name]="showPassword ? 'eye-off-outline' : 'eye-outline'"
+    slot="end"
+    (click)="togglePasswordVisibility()"
+    >
+  </ion-icon>
+}
+</ion-input>

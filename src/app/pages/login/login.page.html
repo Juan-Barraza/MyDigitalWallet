@@ -1,0 +1,69 @@
+<ion-content [fullscreen]="true">
+  <div class="login-container">
+    <div class="login-header">
+      <div class="header-content">
+        <h1 class="headline">Welcome<br />back</h1>
+        <p class="subtext">Sign in to your wallet</p>
+      </div>
+
+      <div class="logo-mark">
+        <ion-icon name="wallet-outline"></ion-icon>
+      </div>
+    </div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+      <div class="form-group">
+        <label>Email</label>
+        <app-input
+          [control]="loginForm.get('email')"
+          type="email"
+          placeholder="your@email.com"
+        >
+        </app-input>
+      </div>
+
+      <div class="form-group">
+        <label>Password</label>
+        <app-input
+          [control]="loginForm.get('password')"
+          type="password"
+          placeholder="*********"
+        >
+        </app-input>
+      </div>
+
+      <div class="btn-primary-wrapper">
+        <ion-button
+          expand="block"
+          type="submit"
+          [disabled]="loginForm.invalid || isLoading"
+        >
+          @if (isLoading) {
+          <ion-spinner name="crescent"></ion-spinner>
+          } @else {
+          <span>LOGIN</span>
+          }
+        </ion-button>
+      </div>
+    </form>
+    <div class="divider">
+      <span>or continue with</span>
+    </div>
+    <div class="btn-google-wrapper">
+      <ion-button expand="block" fill="outline" (click)="onGoogleLogin()">
+        <ion-icon slot="start" name="logo-google"></ion-icon>
+        GOOGLE
+      </ion-button>
+    </div>
+
+    <div class="biometric-btn">
+      <ion-icon name="finger-print-outline"></ion-icon>
+      <span>BIOMETRIC SIGN IN</span>
+    </div>
+
+    <p class="register-link">
+      Don't have an account?
+      <span (click)="goToRegister()">Register</span>
+    </p>
+  </div>
+</ion-content>

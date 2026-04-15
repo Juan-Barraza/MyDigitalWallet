@@ -1,0 +1,31 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.custom-input {
+  --border-style: none;
+  --highlight-height: 0;
+  --inner-padding-end: 0;
+  --background: #FFFFFF;
+  --color: #0A192F;
+  --placeholder-color: #94A3B8;
+  --padding-start: 20px;
+  --padding-end: 10px;
+  border: 1.5px solid #E2E8F0;
+  border-radius: 10px;
+  min-height: 50px;
+  overflow: hidden;
+  padding: 0;
+  transition: border-color 0.2s;
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+}
+
+ion-icon {
+  margin-right: 16px;
+  color: #94A3B8;
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 10;
+}

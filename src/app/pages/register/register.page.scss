@@ -1,0 +1,142 @@
+
+
+ion-content {
+  --background: #F5F7FA;
+}
+
+.register-container {
+  min-height: 100vh;
+  padding: 60px 28px 40px;
+  display: flex;
+  flex-direction: column;
+  background: #F5F7FA;
+}
+
+// ─── Header ───────────────────────────────────────────
+.register-header {
+   margin: -60px -28px 44px -28px;
+  padding: 60px 28px 36px;
+  background: linear-gradient(135deg, #9cabc3 0%, #0f2847 100%);
+  border-bottom-left-radius: 42px;
+  border-bottom-right-radius: 42px;
+
+  .headline {
+    font-family: 'Manrope', sans-serif;
+    font-size: 40px;
+    font-weight: 800;
+    color: #0A192F;
+    line-height: 1.1;
+    margin: 0 0 8px;
+  }
+
+  .subtext {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: #0A192F;
+    margin: 0;
+  }
+}
+
+// ─── Form ─────────────────────────────────────────────
+.form-group {
+  margin-bottom: 20px;
+
+  label {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    color: #94A3B8;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+    display: block;
+    margin-bottom: 8px;
+  }
+}
+
+.form-with-gap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  padding: 16px;
+}
+
+.form-with-gap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  padding: 0 0 16px 0;
+}
+
+.form-group-gap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  &.full-width {
+    grid-column: span 2;
+  }
+
+  label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: #94A3B8;
+    text-transform: capitalize;
+  }
+
+ .custom-select {
+  --background: #ffffff;
+  --border-radius: 10px;
+  --border-color: #E2E8F0;
+  --border-style: solid;
+  --border-width: 1.5px;
+  --padding-start: 16px;
+  --placeholder-color: #94A3B8;
+  min-height: 50px;
+  font-family: 'Inter', sans-serif;
+}
+
+// Estilo para el Popover (lo que se abre)
+ion-select-popover {
+  --background: #F1F5F9; // Fondo gris para el menú
+  font-family: 'Inter', sans-serif;
+}
+}
+
+
+
+// ─── Botón register─────────────────────────────────────
+.btn-primary-wrapper {
+  margin-top: 8px;
+
+  ion-button {
+    --background: #0A192F;
+    --background-activated: #0f2847;
+    --color: #ffffff;
+    --border-radius: 14px;
+    --padding-top: 18px;
+    --padding-bottom: 18px;
+    --box-shadow: 0 8px 24px rgba(10, 25, 47, 0.25);
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: 14px;
+    letter-spacing: 1.5px;
+    height: 56px;
+  }
+}
+
+
+// ─── Link Registro ────────────────────────────────────
+.login-link {
+  text-align: center;
+  margin-top: 32px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: #64748B;
+
+  span {
+    color: #00BCD4;
+    font-weight: 700;
+    cursor: pointer;
+  }
+}

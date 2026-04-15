@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "199278238464",
+    "project_id": "wallet-4a7e5",
+    "storage_bucket": "wallet-4a7e5.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:199278238464:android:72a5dd5fbf10bd0ac8b1e5",
+        "android_client_info": {
+          "package_name": "io.ionic.starter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "199278238464-cmr7afohjjtl8jad691h50i68mprqbfm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.ionic.starter",
+            "certificate_hash": "e1cd2797bbabef95a875dcf4ba45206a7b1b69d2"
+          }
+        },
+        {
+          "client_id": "199278238464-a19dhulqonkdbj8kl32hnh2slh4ec6t4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAy5UTdafoKBJyNakbR_mdd704l7TKCkZg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "199278238464-a19dhulqonkdbj8kl32hnh2slh4ec6t4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
