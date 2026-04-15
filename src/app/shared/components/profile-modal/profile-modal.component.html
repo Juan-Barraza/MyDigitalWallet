@@ -1,0 +1,60 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>My Profile</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="close()">
+        <ion-icon slot="icon-only" name="close-circle"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="profile-header">
+    <div class="avatar-container">
+      <img src="assets/icon/icon-only.png" alt="Profile Picture" />
+      <div class="edit-badge">
+        <ion-icon name="camera"></ion-icon>
+      </div>
+    </div>
+    <h2>{{ profileForm.value.first_name }} {{ profileForm.value.last_name }}</h2>
+    <p>App VIP Member</p>
+  </div>
+
+  <form [formGroup]="profileForm">
+    <div class="form-group">
+      <label>First Name</label>
+      <app-input
+        [control]="profileForm.get('first_name')"
+        type="text"
+        placeholder="Your name">
+      </app-input>
+    </div>
+
+    <div class="form-group">
+      <label>Last Name</label>
+      <app-input
+        [control]="profileForm.get('last_name')"
+        type="text"
+        placeholder="Your last name">
+      </app-input>
+    </div>
+
+    <ion-item lines="none" class="custom-toggle">
+      <ion-icon name="finger-print-outline" slot="start"></ion-icon>
+      <ion-label>Biometrics</ion-label>
+      <ion-toggle slot="end" formControlName="biometricEnabled"></ion-toggle>
+    </ion-item>
+  </form>
+
+  <div class="action-buttons">
+    <ion-button expand="block" class="save-btn" (click)="save()">
+      SAVE CHANGES
+    </ion-button>
+
+    <ion-button expand="block" fill="outline" class="logout-btn" (click)="onLogout()">
+      <ion-icon slot="start" name="log-out-outline"></ion-icon>
+      LOGOUT
+    </ion-button>
+  </div>
+</ion-content>

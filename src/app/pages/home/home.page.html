@@ -10,7 +10,7 @@
 
 <ion-content [fullscreen]="true">
   <div class="greeting">
-    <h1>Hello {{ userName }}!</h1>
+    <h1>Hello {{ userName$ | async}}!</h1>
     <p>Let's save your money.</p>
   </div>
 
