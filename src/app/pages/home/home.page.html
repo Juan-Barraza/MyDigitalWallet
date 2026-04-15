@@ -1,11 +1,90 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <ion-buttons slot="end">
+      <ion-avatar (click)="onProfile()">
+        <img src="assets/icon/icon-only.png" alt="avatar" />
+      </ion-avatar>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div>Hello World</div>
+  <div class="greeting">
+    <h1>Hello {{ userName }}!</h1>
+    <p>Let's save your money.</p>
+  </div>
+
+
+  <div class="card-section">
+    @if (cards.length === 0) {
+    <div class="no-cards">
+      <ion-icon name="card-outline"></ion-icon>
+      <p>No cards available.</p>
+      <ion-button fill="outline" (click)="onAddCard()">+ ADD CARD</ion-button>
+    </div>
+    } @else {
+    <!-- <ion-slides [options]="slideOpts" (ionSlideDidChange)="onCardChange()">
+        @for (card of cards; track card.id) {
+          <ion-slide>
+            <app-card [card]="card"></app-card>
+          </ion-slide>
+        }
+      </ion-slides> -->
+
+    <div class="card-info">
+      <p>{{ activeCard?.titular }}</p>
+      <p>{{ activeCard?.franquicia }} • {{ activeCard?.numeroEnmascarado }}</p>
+      <ion-button fill="outline" size="small" (click)="onSetDefault()">
+        <ion-icon slot="start" name="shield-checkmark-outline"></ion-icon>
+        Set as Default
+      </ion-button>
+    </div>
+    }
+  </div>
+
+  <div class="quick-actions">
+    <app-button
+      class="btn-change-card"
+      variant="action"
+      class="action-item"
+      icon="swap-horizontal-outline"
+      label="Change Card"
+      (clicked)="onChangeCard()"
+    >
+    </app-button>
+
+    <app-button
+      class="btn-pay"
+      variant="action"
+      icon="card-outline"
+      label="Pay Now"
+      (clicked)="onPayNow()"
+    >
+    </app-button>
+
+    <app-button
+      class="btn-add-card"
+      variant="action"
+      icon="add"
+      label="Add Card"
+      (clicked)="onAddCard()"
+    >
+    </app-button>
+  </div>
+
+  <!-- Historial -->
+  <div class="history-section">
+    <div class="history-header">
+      <h2>Card History</h2>
+      <span (click)="onViewAll()">View All</span>
+    </div>
+
+    @if (transactions.length === 0) {
+    <p class="no-transactions">No transactions with this selected card.</p>
+    } @else {
+    <!-- @for (tx of transactions; track tx.id) {
+        <app-transaction-item [transaction]="tx"></app-transaction-item>
+      } -->
+    }
+  </div>
 </ion-content>
