@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthService } from './services/auth/auth';
 import { FirestoreService } from './services/firestore/firestore';
+import { ToastService } from './services/toast/toast';
 
 
 
@@ -12,7 +13,8 @@ import { FirestoreService } from './services/firestore/firestore';
   ],
   providers: [
     AuthService,
-    FirestoreService
+    FirestoreService,
+    ToastService,
   ]
 })
 export class CoreModule { }

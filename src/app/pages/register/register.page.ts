@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth/auth';
+import { ToastService } from 'src/app/core/services/toast/toast';
 
 @Component({
   selector: 'app-register',
@@ -17,6 +18,7 @@ export class RegisterPage implements OnInit {
     private fb: FormBuilder,
     private authService: AuthService,
     private router: Router,
+    private toastService: ToastService
   ) {
     this.initForm();
   }
@@ -26,16 +28,20 @@ export class RegisterPage implements OnInit {
 
 
   async onRegister() {
-    if (this.registerForm.invalid) return;
-    this.isLoading = true;
+    if (this.registerForm.invalid) {
+      this.registerForm.markAllAsTouched();
+      await this.toastService.error('Por favor completa todos los campos correctamente');
+      return;
+    } this.isLoading = true;
     try {
       const { password, ...profile } = this.registerForm.value;
       await this.authService.registerWithEmailAndPassword(profile, password);
-      this.router.navigate(['/home'], {replaceUrl: true});
+      await this.toastService.success('¡Cuenta creada exitosamente!');
+      this.router.navigate(['/home'], { replaceUrl: true });
 
-    } catch (error) {
+    } catch (error: any) {
       console.error('Register error:', error);
-      // toast
+      await this.toastService.error(this.getFirebaseError(error?.code));
     } finally {
       this.isLoading = false;
     }
@@ -44,6 +50,7 @@ export class RegisterPage implements OnInit {
   goToLogin() {
     this.router.navigate(['/login']);
   }
+
 
   get emailError() {
     const control = this.registerForm.get('email');
@@ -106,5 +113,15 @@ export class RegisterPage implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
     });
+  }
+
+   private getFirebaseError(code: string): string {
+    const errors: Record<string, string> = {
+      'auth/email-already-in-use': 'Este email ya está registrado',
+      'auth/invalid-email': 'El email no es válido',
+      'auth/weak-password': 'La contraseña es muy débil',
+      'auth/network-request-failed': 'Error de conexión, verifica tu internet',
+    };
+    return errors[code] || 'Ocurrió un error inesperado';
   }
 }
