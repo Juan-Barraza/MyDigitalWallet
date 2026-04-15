@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LoadingController } from '@ionic/angular';
 import { AuthService } from 'src/app/core/services/auth/auth';
+import { BiometricService } from 'src/app/core/services/biometric/biometric';
 import { ToastService } from 'src/app/core/services/toast/toast';
 
 @Component({
@@ -13,17 +15,21 @@ import { ToastService } from 'src/app/core/services/toast/toast';
 export class LoginPage implements OnInit {
   loginForm!: FormGroup;
   isLoading = false;
+  hasBiometricSetup: boolean = false;
 
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private biometricService: BiometricService,
+    private loadingController: LoadingController
   ) {
     this.initForm();
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+    await this.checkBiometricStatus();
   }
 
   async onLogin() {
@@ -54,6 +60,49 @@ export class LoginPage implements OnInit {
     } catch (error: any) {
       console.error('Google login error:', error);
       await this.toastService.showError(error);
+    }
+  }
+
+  async checkBiometricStatus() {
+    const isAvailable = await this.biometricService.isAvailable();
+    if (!isAvailable) return;
+
+    const credencials = await this.biometricService.getCredentials();
+    if (credencials && credencials.username && credencials.password) {
+      this.hasBiometricSetup = true;
+    }
+
+  }
+
+  async loginWithBiometrics() {
+    try {
+      const credencials = await this.biometricService.getCredentials();
+      if (!credencials) {
+        console.error("No se encontraron credenciales para el servidor:", 'io.ionic.starter' );
+        await this.toastService.showError('No biometric credentials found');
+        return;
+      }
+      const isVerified = await this.biometricService.verifyIdentity('Start session in My Digial Wallet');
+      if (isVerified) {
+        const loading = await this.loadingController.create({
+          message: 'Logging in with biometrics...',
+          spinner: 'crescent',
+        });
+        await loading.present();
+        try {
+          await this.authService.loginWithEmailAndPassword(credencials.username, credencials.password);
+          await this.toastService.success('¡Bienvenido de vuelta!');
+          this.router.navigate(['/home'], { replaceUrl: true });
+        } catch (firebaseerror) {
+          await this.toastService.showError('Error al iniciar sesión. Intenta con tu contraseña.');
+          await this.biometricService.deleteCredentials();
+          this.hasBiometricSetup = false;
+        } finally {
+          await loading.dismiss();
+        }
+      }
+    } catch (error) {
+      console.error('Biometric login error:', error);
     }
   }
 
