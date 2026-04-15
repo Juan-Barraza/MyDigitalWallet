@@ -29,7 +29,7 @@ export class LoginPage implements OnInit {
   async onLogin() {
     if (this.loginForm.invalid) {
       this.loginForm.markAllAsTouched();
-      await this.toastService.error('Por favor completa todos los campos correctamente');
+      await this.toastService.showError('Por favor completa todos los campos correctamente');
       return;
     } this.isLoading = true;
     try {
@@ -40,7 +40,7 @@ export class LoginPage implements OnInit {
 
     } catch (error: any) {
       console.error('Login error:', error);
-      await this.toastService.error(this.getFirebaseError(error?.code));
+      await this.toastService.showError(error);
     } finally {
       this.isLoading = false;
     }
@@ -53,7 +53,7 @@ export class LoginPage implements OnInit {
       await this.toastService.success('¡Bienvenido!');
     } catch (error: any) {
       console.error('Google login error:', error);
-      await this.toastService.error(this.getFirebaseError(error?.code));
+      await this.toastService.showError(error);
     }
   }
 
@@ -81,18 +81,6 @@ export class LoginPage implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
     });
-  }
-
-   private getFirebaseError(code: string): string {
-    const errors: Record<string, string> = {
-      'auth/invalid-credential': 'Email o contraseña incorrectos',
-      'auth/user-not-found': 'No existe una cuenta con este email',
-      'auth/wrong-password': 'Contraseña incorrecta',
-      'auth/too-many-requests': 'Demasiados intentos, intenta más tarde',
-      'auth/network-request-failed': 'Error de conexión, verifica tu internet',
-      'auth/user-disabled': 'Esta cuenta ha sido deshabilitada',
-    };
-    return errors[code] || 'Ocurrió un error inesperado';
   }
 
 }

@@ -30,7 +30,7 @@ export class RegisterPage implements OnInit {
   async onRegister() {
     if (this.registerForm.invalid) {
       this.registerForm.markAllAsTouched();
-      await this.toastService.error('Por favor completa todos los campos correctamente');
+      await this.toastService.showError('Por favor completa todos los campos correctamente');
       return;
     } this.isLoading = true;
     try {
@@ -41,7 +41,7 @@ export class RegisterPage implements OnInit {
 
     } catch (error: any) {
       console.error('Register error:', error);
-      await this.toastService.error(this.getFirebaseError(error?.code));
+      await this.toastService.showError(error);
     } finally {
       this.isLoading = false;
     }
@@ -115,13 +115,5 @@ export class RegisterPage implements OnInit {
     });
   }
 
-   private getFirebaseError(code: string): string {
-    const errors: Record<string, string> = {
-      'auth/email-already-in-use': 'Este email ya está registrado',
-      'auth/invalid-email': 'El email no es válido',
-      'auth/weak-password': 'La contraseña es muy débil',
-      'auth/network-request-failed': 'Error de conexión, verifica tu internet',
-    };
-    return errors[code] || 'Ocurrió un error inesperado';
-  }
+
 }
