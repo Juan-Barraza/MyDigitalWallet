@@ -92,6 +92,19 @@ export class AuthService {
     return result;
   }
 
+  async verifyCurrentPassword(password: string): Promise<boolean> {
+    const currentUser = this.getCurrentUser();
+    if (!currentUser || !currentUser.email) return false;
+
+    try {
+      // inicio de sesion con email y contraseña para verificar la contraseña actual
+      await signInWithEmailAndPassword(this.auth, currentUser.email, password);
+      return true;
+    } catch (error) {
+      return false;
+    }
+  }
+
 
   async logout() {
     return await signOut(this.auth);
