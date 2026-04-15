@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment';
 
 export interface UserProfile {
   uid: string;
-  name: string
+  first_name: string
   last_name: string;
   typeDocument: string;
   numberDocument: string;
@@ -77,7 +77,7 @@ export class AuthService {
     if (!existUser) {
       const userProfile: UserProfile = {
         uid,
-        name: result.user.displayName?.split(' ')[0] || '',
+        first_name: result.user.displayName?.split(' ')[0] || '',
         last_name: result.user.displayName?.split(' ').slice(1).join(' ') || '',
         typeDocument: '',
         numberDocument: '',
@@ -93,22 +93,7 @@ export class AuthService {
   }
 
 
-  logout() {
-    return signOut(this.auth);
+  async logout() {
+    return await signOut(this.auth);
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

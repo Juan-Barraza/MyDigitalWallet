@@ -4,6 +4,7 @@ import { InputComponent } from './components/input/input.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { ButtonComponent } from './components/button/button.component';
+import { ProfileModalComponent } from './components/profile-modal/profile-modal.component';
 
 
 
@@ -11,6 +12,7 @@ import { ButtonComponent } from './components/button/button.component';
   declarations: [
     InputComponent,
     ButtonComponent,
+    ProfileModalComponent,
   ],
   imports: [
     CommonModule,
@@ -21,6 +23,7 @@ import { ButtonComponent } from './components/button/button.component';
     InputComponent,
     ReactiveFormsModule,
     ButtonComponent,
+    ProfileModalComponent,
   ]
 })
 export class SharedModule { }
