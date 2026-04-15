@@ -1,0 +1,18 @@
+@if (variant === 'action') {
+  <div class="action-item {{class}}" (click)="onClicked()">
+    <div class="action-icon">
+      <ion-icon [name]="icon"></ion-icon>
+    </div>
+    <span>{{ label }}</span>
+  </div>
+} @else {
+  <ion-button
+    [type]="type"
+    [expand]="expand"
+    (click)="onClicked()">
+    @if (icon) {
+      <ion-icon slot="start" [name]="icon"></ion-icon>
+    }
+    {{ label }}
+  </ion-button>
+}

@@ -1,27 +1,173 @@
-#container {
-  text-align: center;
-
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+ion-content {
+  --background: #F5F7FA;
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
+ion-toolbar {
+  --background: #F5F7FA;
+  --border-width: 0;
+  padding: 0 8px;
+
+  ion-avatar {
+    width: 38px;
+    height: 38px;
+    cursor: pointer;
+    margin-right: 4px;
+
+    img {
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #00BCD4;
+    }
+  }
 }
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
+// ─── Saludo ───────────────────────────────────────────
+.greeting {
+  padding: 8px 24px 20px;
 
-  color: #8c8c8c;
+  h1 {
+    font-family: 'Manrope', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    color: #0A192F;
+    margin: 0 0 4px;
+  }
 
-  margin: 0;
+  p {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: #64748B;
+    margin: 0;
+  }
 }
 
-#container a {
-  text-decoration: none;
+// ─── Sección tarjeta ──────────────────────────────────
+.card-section {
+  margin: 0 24px 24px;
+
+  .no-cards {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 40px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+
+    ion-icon {
+      font-size: 48px;
+      color: #CBD5E1;
+    }
+
+    p {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: #94A3B8;
+      margin: 0;
+    }
+
+    ion-button {
+      --border-color: #0A192F;
+      --color: #0A192F;
+      --border-radius: 12px;
+      font-family: 'Manrope', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 1px;
+      margin-top: 4px;
+    }
+  }
+
+  .card-info {
+    text-align: center;
+    margin-top: 16px;
+
+    p {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: #64748B;
+      margin: 4px 0;
+
+      &:first-child {
+        font-weight: 700;
+        color: #0A192F;
+        font-size: 16px;
+      }
+    }
+
+    ion-button {
+      --border-color: #00BCD4;
+      --color: #00BCD4;
+      --border-radius: 10px;
+      margin-top: 8px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 13px;
+    }
+  }
+}
+
+// ─── Quick Actions ────────────────────────────────────
+.quick-actions {
+  display: flex;
+  justify-content: space-around;
+  padding: 0 24px;
+  margin-bottom: 32px;
+
+.btn-change-card {
+  --icon-bg: #0f2847;
+  --icon-color: #ffffff;
+  --text-color: #0f2847;
+}
+
+.btn-pay {
+  --icon-bg: #00BCD4;
+  --icon-color: #F1F5F9;
+  --text-color: #0A192F;
+}
+
+.btn-add-card {
+  --icon-bg: #7f8fa7;
+  --icon-color:  #F1F5F9;
+  --text-color: #0A192F;
+}
+
+}
+
+// ─── Historial ────────────────────────────────────────
+.history-section {
+  padding: 0 24px;
+
+  .history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+
+    h2 {
+      font-family: 'Manrope', sans-serif;
+      font-size: 18px;
+      font-weight: 800;
+      color: #0A192F;
+      margin: 0;
+    }
+
+    span {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: #00BCD4;
+      cursor: pointer;
+    }
+  }
+
+  .no-transactions {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: #94A3B8;
+    text-align: center;
+    padding: 32px 0;
+    margin: 0;
+  }
 }
