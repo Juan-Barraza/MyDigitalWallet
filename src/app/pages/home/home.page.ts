@@ -6,7 +6,7 @@ import { firstValueFrom, map, Observable } from 'rxjs';
 import { ToastService } from 'src/app/core/services/toast/toast';
 import { Userservice } from 'src/app/core/services/userservice/userservice';
 import { ProfileModalComponent } from 'src/app/shared/components/profile-modal/profile-modal.component';
-import { enterAnimation, leaveAnimation } from '../../shared/animations/profile-animations';
+import { enterAnimation } from '../../shared/animations/profile-animations';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -77,7 +77,6 @@ export class HomePage implements OnInit {
         userProfile: currengProfile,
       },
       enterAnimation: enterAnimation,
-      leaveAnimation: leaveAnimation,
       breakpoints: [0, 0.9], // hacer parecer una hoja que sube
       initialBreakpoint: 0.9,
     });
