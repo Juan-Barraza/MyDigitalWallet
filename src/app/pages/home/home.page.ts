@@ -1,4 +1,4 @@
-import { AuthService, UserProfile } from './../../core/services/auth/auth';
+import { AuthService } from './../../core/services/auth/auth';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
