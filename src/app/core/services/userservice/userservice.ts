@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { AuthService, UserProfile } from '../auth/auth';
+import { AuthService } from '../auth/auth';
 import { FirestoreService } from '../firestore/firestore';
 import { BehaviorSubject } from 'rxjs';
+import { UserProfile } from '../../models/user.model';
 
 @Injectable({
   providedIn: 'root',
