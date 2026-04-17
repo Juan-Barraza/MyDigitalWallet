@@ -1,0 +1,94 @@
+<ion-content [fullscreen]="true">
+  <div class="add-card-container">
+    <div class="custom-header">
+      <div class="header-top">
+        <ion-buttons slot="start">
+          <ion-back-button defaultHref="/" text="" mode="md"></ion-back-button>
+        </ion-buttons>
+      </div>
+      <div class="header-body">
+        <div class="header-content">
+          <h1 class="headline">Add New<br />Card</h1>
+          <p class="subtext">Securely link your payment method</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-wrapper">
+      <div class="preview-container">
+        <app-card
+          [cardholderName]="addCardForm.get('cardholderName')?.value"
+          [cardNumber]="addCardForm.get('cardNumber')?.value"
+          [expiryDate]="addCardForm.get('expiryDate')?.value"
+          [brand]="currentBrand"
+          mode="preview"
+        >
+        </app-card>
+      </div>
+
+      <form [formGroup]="addCardForm" (ngSubmit)="onAddCard()">
+        <div class="form-group">
+          <label>CARDHOLDER NAME</label>
+          <app-input
+            [maxLength]="26"
+            [control]="addCardForm.get('cardholderName')"
+            placeholder="James Smith"
+          >
+          </app-input>
+        </div>
+
+        <div class="form-group">
+          <label>CARD NUMBER</label>
+          <app-input
+            [maxLength]="19"
+            [control]="addCardForm.get('cardNumber')"
+            placeholder="XXXX XXXX XXXX XXXX"
+            type="tel"
+          >
+          </app-input>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <label>EXPIRY DATE</label>
+              <app-input
+                [maxLength]="5"
+                [control]="addCardForm.get('expiryDate')"
+                placeholder="MM/YY"
+                type="tel"
+              >
+              </app-input>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label>CVC</label>
+              <app-input
+                [maxLength]="3"
+                [control]="addCardForm.get('cvv')"
+                placeholder="***"
+                type="password"
+              >
+              </app-input>
+            </div>
+          </div>
+        </div>
+
+        <div class="btn-primary-wrapper">
+          <ion-button
+            expand="block"
+            type="submit"
+            [disabled]="addCardForm.invalid || isLoading"
+          >
+            @if (isLoading) {
+            <ion-spinner name="crescent"></ion-spinner>
+            } @else {
+            <span>ADD NEW CARD</span>
+            }
+          </ion-button>
+        </div>
+      </form>
+    </div>
+  </div>
+</ion-content>
