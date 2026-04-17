@@ -7,20 +7,12 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:199278238464:android:72a5dd5fbf10bd0ac8b1e5",
+        "mobilesdk_app_id": "1:199278238464:android:a75a5c42e4e082e4c8b1e5",
         "android_client_info": {
-          "package_name": "io.ionic.starter"
+          "package_name": "com.mywallet.digital"
         }
       },
       "oauth_client": [
-        {
-          "client_id": "199278238464-cmr7afohjjtl8jad691h50i68mprqbfm.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "io.ionic.starter",
-            "certificate_hash": "e1cd2797bbabef95a875dcf4ba45206a7b1b69d2"
-          }
-        },
         {
           "client_id": "199278238464-a19dhulqonkdbj8kl32hnh2slh4ec6t4.apps.googleusercontent.com",
           "client_type": 3

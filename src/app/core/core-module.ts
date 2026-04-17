@@ -6,6 +6,8 @@ import { ToastService } from './services/toast/toast';
 import { Userservice } from './services/userservice/userservice';
 import { BiometricService } from './services/biometric/biometric';
 import { CardService } from './services/cardservice/cardservice';
+import { NotificationService } from './services/notification/notification';
+import { PaymentService } from './services/payment/payment';
 
 
 
@@ -21,6 +23,8 @@ import { CardService } from './services/cardservice/cardservice';
     Userservice,
     BiometricService,
     CardService,
+    NotificationService,
+    PaymentService,
   ]
 })
 export class CoreModule { }

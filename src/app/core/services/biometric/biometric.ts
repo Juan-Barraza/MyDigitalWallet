@@ -36,14 +36,14 @@ export class BiometricService {
     await NativeBiometric.setCredentials({
       username: email,
       password,
-      server: 'io.ionic.starter'
+      server: 'com.mywallet.digital'
     });
   }
 
   async getCredentials(): Promise<any> {
     try {
       return await NativeBiometric.getCredentials({
-        server: 'io.ionic.starter'
+        server: 'com.mywallet.digital'
       });
     } catch (error) {
       return null;
@@ -53,7 +53,7 @@ export class BiometricService {
   async deleteCredentials(): Promise<void> {
     try {
       await NativeBiometric.deleteCredentials({
-        server: 'io.ionic.starter'
+        server: 'com.mywallet.digital'
       });
     } catch (error) {
 

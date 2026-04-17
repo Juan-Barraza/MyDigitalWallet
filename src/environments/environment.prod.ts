@@ -9,5 +9,7 @@ export const environment = {
     appId: "1:199278238464:web:0303d3f21272bd89c8b1e5"
   },
   clientIdWeb: '199278238464-a19dhulqonkdbj8kl32hnh2slh4ec6t4.apps.googleusercontent.com',
-
+  RAILWAY_URL: 'https://sendnotificationfirebase-production.up.railway.app',
+  RAILWAY_EMAIL: 'juan.barrazapadilla@unicolombo.edu.co',
+  RAILWAY_PASSWORD: '28Dejulio',
 };
