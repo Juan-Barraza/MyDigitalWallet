@@ -1,4 +1,4 @@
-package io.ionic.starter;
+package com.mywallet.digital;
 
 import com.getcapacitor.BridgeActivity;
 

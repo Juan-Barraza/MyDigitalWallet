@@ -1,0 +1,121 @@
+<ion-content [fullscreen]="true">
+  <div class="payment-container">
+    <div class="custom-header">
+      <div class="header-top">
+        <ion-buttons slot="start">
+          <ion-back-button
+            defaultHref="/"
+            text=""
+            (click)="goBack()"
+            mode="md"
+          ></ion-back-button>
+        </ion-buttons>
+      </div>
+      <div class="header-body">
+        <div class="header-content">
+          <h1 class="headline">Confirm<br />Payment</h1>
+          <p class="subtext">Secure NFC Transaction</p>
+        </div>
+      </div>
+    </div>
+
+    @if (state === 'idle' || state === 'processing') {
+
+    <div class="merchant-info">
+      <h2 class="merchant-name">{{ simulation.merchant }}</h2>
+      <p class="merchant-category">{{ simulation.merchantCategory }}</p>
+      <p class="amount">${{ simulation.amount | number:'1.2-2' }}</p>
+    </div>
+
+    @if (activeCard) {
+    <div class="card-preview">
+      <app-card
+        [cardholderName]="activeCard.cardholderName"
+        [lastFour]="activeCard.cardNumber"
+        [expiryDate]="activeCard.expiryDate"
+        [brand]="activeCard.brand"
+        mode="saved"
+      >
+      </app-card>
+    </div>
+    } @else {
+    <div class="no-card-warn">
+      <ion-icon name="card-outline"></ion-icon>
+      <p>No card available. Please add one first.</p>
+    </div>
+    }
+
+    <div class="nfc-indicator">
+      <div class="nfc-icon" [class.pulse]="state === 'processing'">
+        <ion-icon name="wifi-outline"></ion-icon>
+      </div>
+      <p>
+        {{ state === 'processing' ? 'Processing...' : 'Ready to transmit your
+        payment securely over NFC.' }}
+      </p>
+      <p class="nfc-hint">Hold your phone near the reader.</p>
+    </div>
+
+    <ion-button
+      expand="block"
+      class="confirm-btn"
+      (click)="confirmPayment()"
+      [disabled]="state === 'processing' || !activeCard"
+    >
+      @if (state === 'processing') {
+      <ion-spinner name="crescent"></ion-spinner>
+      } @else { CONFIRM PAYMENT }
+    </ion-button>
+    } @if (state === 'success') {
+    <div class="result-screen success">
+      <div class="result-icon">
+        <ion-icon name="checkmark-circle"></ion-icon>
+      </div>
+      <h2>Payment Successful!</h2>
+      <p class="result-merchant">{{ lastTransaction?.merchant }}</p>
+      <p class="result-amount">
+        ${{ lastTransaction?.amount | number:'1.2-2' }}
+      </p>
+      <div class="result-card-info">
+        <ion-icon name="card-outline"></ion-icon>
+        <span
+          >{{ lastTransaction?.cardBrand | titlecase }} •••• {{
+          lastTransaction?.cardLastFour }}</span
+        >
+      </div>
+
+      <ion-button expand="block" class="confirm-btn" (click)="newPayment()">
+        NEW PAYMENT
+      </ion-button>
+      <ion-button
+        expand="block"
+        fill="clear"
+        class="back-btn"
+        (click)="goBack()"
+      >
+        Back to Home
+      </ion-button>
+    </div>
+    } @if (state === 'failed') {
+    <div class="result-screen failed">
+      <div class="result-icon">
+        <ion-icon name="close-circle"></ion-icon>
+      </div>
+      <h2>Payment Failed</h2>
+      <p>Something went wrong. Please try again.</p>
+
+      <ion-button expand="block" class="confirm-btn" (click)="confirmPayment()">
+        RETRY
+      </ion-button>
+      <ion-button
+        expand="block"
+        fill="clear"
+        class="back-btn"
+        (click)="goBack()"
+      >
+        Back to Home
+      </ion-button>
+    </div>
+    }
+  </div>
+</ion-content>

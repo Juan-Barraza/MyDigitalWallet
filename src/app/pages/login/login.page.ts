@@ -78,7 +78,7 @@ export class LoginPage implements OnInit {
     try {
       const credencials = await this.biometricService.getCredentials();
       if (!credencials) {
-        console.error("No se encontraron credenciales para el servidor:", 'io.ionic.starter' );
+        console.error("No se encontraron credenciales para el servidor:", 'com.mywallet.digital' );
         await this.toastService.showError('No biometric credentials found');
         return;
       }

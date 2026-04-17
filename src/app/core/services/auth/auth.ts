@@ -38,6 +38,7 @@ export class AuthService {
       ...profile,
       biometricEnabled: false,
       createdAt: Timestamp.now(),
+      fcmToken: "",
     }
 
     await this.firestoreService.setDocument('users', uid, userPrpfile);

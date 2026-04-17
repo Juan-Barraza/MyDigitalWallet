@@ -10,6 +10,7 @@ import { enterAnimation } from '../../shared/animations/profile-animations';
 import { CardService } from 'src/app/core/services/cardservice/cardservice';
 import { Card } from 'src/app/core/models/card.model';
 import { AlertController } from '@ionic/angular';
+import { NotificationService } from 'src/app/core/services/notification/notification';
 
 @Component({
   selector: 'app-home',
@@ -39,9 +40,11 @@ export class HomePage implements OnInit, OnDestroy {
     private toastService: ToastService,
     private cardService: CardService,
     private alertCtr: AlertController,
+    private notificationService: NotificationService,
   ) { }
 
   async ngOnInit() {
+    this.setUserIdToSaveNotificaion();
     this.userName$ = this.userService.userProfile$.pipe(
       map(profile => profile ? profile.first_name : 'Guest')
     );
@@ -133,13 +136,13 @@ export class HomePage implements OnInit, OnDestroy {
       console.error('No user ID found');
       return;
     }
-   this.cardsSubscription = this.cardService.getUserCards(uid).subscribe(cards => {
-  // La tarjeta isDefault siempre queda en el indice 0
-  this.cards = (cards as Card[]).sort((a, b) =>
-    (b.isDefault ? 1 : 0) - (a.isDefault ? 1 : 0)
-  );
-  this.activeCard = this.cards[0] || null;
-});
+    this.cardsSubscription = this.cardService.getUserCards(uid).subscribe(cards => {
+      // La tarjeta isDefault siempre queda en el indice 0
+      this.cards = (cards as Card[]).sort((a, b) =>
+        (b.isDefault ? 1 : 0) - (a.isDefault ? 1 : 0)
+      );
+      this.activeCard = this.cards[0] || null;
+    });
   }
 
   private async loadTransactions() {
@@ -147,6 +150,16 @@ export class HomePage implements OnInit, OnDestroy {
     this.transactions = [];
   }
 
+  private async setUserIdToSaveNotificaion() {
+    const uid = this.authservice.getCurrentUser()?.uid;
+    if (!uid) {
+      console.error('No user ID found');
+      console.log(JSON.stringify('No user ID found'));
+
+      return;
+    }
+    await this.notificationService.requestPermission(uid);
+  }
   ngOnDestroy() {
     this.cardsSubscription?.unsubscribe();
   }
