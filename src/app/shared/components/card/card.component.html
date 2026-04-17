@@ -1,0 +1,38 @@
+<div class="card" [ngClass]="brand">
+  <div class="card-shine"></div>
+  <div class="card-top">
+    <span class="card-type">DEBIT</span>
+    <span class="card-brand">{{ brandLabel }}</span>
+  </div>
+
+  <div class="card-middle">
+    <div class="chip"></div>
+  </div>
+
+  <div class="card-number">{{ displayNumber }}</div>
+
+  <div class="card-bottom">
+    <div class="card-holder">
+      <span class="label">CARDHOLDER NAME</span>
+      <span class="value">{{ cardholderName || "YOUR NAME" }}</span>
+    </div>
+    <div class="card-expiry">
+      <span class="label">EXPIRY</span>
+      <span class="value">{{ expiryDate || "MM/YY" }}</span>
+    </div>
+
+    @if (brand !== 'unknown') {
+    <div class="brand-logo">
+      @if (brand === 'visa') {
+      <span class="visa-logo">VISA</span>
+      } @else if (brand === 'mastercard') {
+      <div class="mc-logo">
+        <div class="mc-circle mc-left"></div>
+        <div class="mc-circle mc-right"></div>
+      </div>
+
+      }
+    </div>
+    }
+  </div>
+</div>

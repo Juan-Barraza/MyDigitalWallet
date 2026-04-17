@@ -1,25 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, signInWithCredential, signInWithEmailAndPassword, User } from '@angular/fire/auth';
-import { Timestamp } from 'firebase/firestore';
 import { FirestoreService } from '../firestore/firestore';
 import { GoogleAuthProvider, onAuthStateChanged, signOut } from 'firebase/auth';
 import { GoogleSignIn } from '@capawesome/capacitor-google-sign-in';
 import { environment } from 'src/environments/environment';
+import { UserProfile } from '../../models/user.model';
+import { Timestamp } from 'firebase/firestore';
 
 
-
-
-export interface UserProfile {
-  uid: string;
-  first_name: string
-  last_name: string;
-  typeDocument: string;
-  numberDocument: string;
-  country: string;
-  email: string;
-  biometricEnabled: boolean;
-  createdAt: Timestamp;
-}
 
 @Injectable({
   providedIn: 'root',

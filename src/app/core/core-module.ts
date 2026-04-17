@@ -5,6 +5,7 @@ import { FirestoreService } from './services/firestore/firestore';
 import { ToastService } from './services/toast/toast';
 import { Userservice } from './services/userservice/userservice';
 import { BiometricService } from './services/biometric/biometric';
+import { CardService } from './services/cardservice/cardservice';
 
 
 
@@ -19,6 +20,7 @@ import { BiometricService } from './services/biometric/biometric';
     ToastService,
     Userservice,
     BiometricService,
+    CardService,
   ]
 })
 export class CoreModule { }

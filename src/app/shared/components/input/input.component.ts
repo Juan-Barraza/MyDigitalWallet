@@ -11,6 +11,7 @@ export class InputComponent  implements OnInit {
   @Input() control: FormControl | any;
   @Input() type: string = 'text';
   @Input() placeholder: string = '';
+  @Input() maxLength: number = 20;
   showPassword: boolean = false;
 
   constructor() { }

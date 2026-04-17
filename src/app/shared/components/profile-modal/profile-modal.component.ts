@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertController, ModalController } from '@ionic/angular';
-import { AuthService, UserProfile } from 'src/app/core/services/auth/auth';
+import { UserProfile } from 'src/app/core/models/user.model';
+import { AuthService } from 'src/app/core/services/auth/auth';
 import { BiometricService } from 'src/app/core/services/biometric/biometric';
 import { ToastService } from 'src/app/core/services/toast/toast';
 import { Userservice } from 'src/app/core/services/userservice/userservice';

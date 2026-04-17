@@ -5,6 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { ButtonComponent } from './components/button/button.component';
 import { ProfileModalComponent } from './components/profile-modal/profile-modal.component';
+import { CardComponent } from './components/card/card.component';
 
 
 
@@ -13,6 +14,7 @@ import { ProfileModalComponent } from './components/profile-modal/profile-modal.
     InputComponent,
     ButtonComponent,
     ProfileModalComponent,
+    CardComponent,
   ],
   imports: [
     CommonModule,
@@ -24,6 +26,7 @@ import { ProfileModalComponent } from './components/profile-modal/profile-modal.
     ReactiveFormsModule,
     ButtonComponent,
     ProfileModalComponent,
+    CardComponent,
   ]
 })
 export class SharedModule { }

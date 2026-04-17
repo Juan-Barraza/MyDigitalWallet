@@ -1,24 +1,29 @@
-import { AuthService, UserProfile } from './../../core/services/auth/auth';
-import { Component, OnInit } from '@angular/core';
+import { AuthService } from './../../core/services/auth/auth';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
-import { firstValueFrom, map, Observable } from 'rxjs';
+import { firstValueFrom, map, Observable, Subscription } from 'rxjs';
 import { ToastService } from 'src/app/core/services/toast/toast';
 import { Userservice } from 'src/app/core/services/userservice/userservice';
 import { ProfileModalComponent } from 'src/app/shared/components/profile-modal/profile-modal.component';
 import { enterAnimation } from '../../shared/animations/profile-animations';
+import { CardService } from 'src/app/core/services/cardservice/cardservice';
+import { Card } from 'src/app/core/models/card.model';
+import { AlertController } from '@ionic/angular';
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
   standalone: false,
 })
-export class HomePage implements OnInit {
+export class HomePage implements OnInit, OnDestroy {
 
   userName$!: Observable<string>;
   cards: any[] = [];
   transactions: any[] = [];
   activeCard: any = null;
+  private cardsSubscription?: Subscription;
 
   slideOpts = {
     initialSlide: 0,
@@ -32,21 +37,24 @@ export class HomePage implements OnInit {
     private modalControl: ModalController,
     private authservice: AuthService,
     private toastService: ToastService,
+    private cardService: CardService,
+    private alertCtr: AlertController,
   ) { }
 
   async ngOnInit() {
     this.userName$ = this.userService.userProfile$.pipe(
       map(profile => profile ? profile.first_name : 'Guest')
     );
-    await this.loadCards();
+    this.loadCards();
     await this.loadTransactions();
     await this.userService.fetchUserProfile();
   }
 
 
 
-  onCardChange() {
-    // Actualizar tarjeta activa al deslizar
+  onCardChange(event: any) {
+    const swiper = event.detail[0];
+    this.activeCard = this.cards[swiper.activeIndex];
   }
 
   onSetDefault() {
@@ -96,12 +104,42 @@ export class HomePage implements OnInit {
     }
   }
 
-
+  async onDeleteCard(card: any) {
+    const alert = await this.alertCtr.create({
+      header: 'Confirm Delete',
+      message: 'Are you sure you want to remove this card?',
+      buttons: [
+        { text: 'Cancel', role: 'cancel' },
+        {
+          text: 'Delete',
+          role: 'destructive',
+          handler: async () => {
+            try {
+              await this.cardService.deleteCard(card.id);
+              this.toastService.success('Card deleted successfully');
+            } catch (e) {
+              this.toastService.showError('Error deleting card');
+            }
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
 
   private async loadCards() {
-    // Después conectamos con CardService
-    this.cards = [];
-    this.activeCard = this.cards[0] || null;
+    const uid = this.authservice.getCurrentUser()?.uid;
+    if (!uid) {
+      console.error('No user ID found');
+      return;
+    }
+   this.cardsSubscription = this.cardService.getUserCards(uid).subscribe(cards => {
+  // La tarjeta isDefault siempre queda en el indice 0
+  this.cards = (cards as Card[]).sort((a, b) =>
+    (b.isDefault ? 1 : 0) - (a.isDefault ? 1 : 0)
+  );
+  this.activeCard = this.cards[0] || null;
+});
   }
 
   private async loadTransactions() {
@@ -109,4 +147,7 @@ export class HomePage implements OnInit {
     this.transactions = [];
   }
 
+  ngOnDestroy() {
+    this.cardsSubscription?.unsubscribe();
+  }
 }
