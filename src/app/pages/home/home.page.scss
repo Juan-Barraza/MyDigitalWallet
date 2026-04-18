@@ -78,9 +78,10 @@ ion-toolbar {
 
 
 .swiper-section {
-  width: 100%;
+  width: 80%;
   // Espacio extra arriba/abajo para que las cartas apiladas se vean
   padding: 8px 0 16px;
+  margin: auto;
 }
 
 .stacked-swiper {
