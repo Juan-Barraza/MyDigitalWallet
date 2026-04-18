@@ -78,9 +78,10 @@ ion-toolbar {
 
 
 .swiper-section {
-  width: 100%;
+  width: 80%;
   // Espacio extra arriba/abajo para que las cartas apiladas se vean
   padding: 8px 0 16px;
+  margin: auto;
 }
 
 .stacked-swiper {
@@ -163,8 +164,6 @@ swiper-slide {
     background: rgba(148, 163, 184, 0.12);
     border-radius: 20px;
     padding: 4px 12px;
-    margin-bottom: 8px;
-
     &.is-default {
       color: #0A192F;
       background: rgba(10, 25, 47, 0.08);
@@ -182,7 +181,7 @@ swiper-slide {
   .card-ending {
     font-size: 14px;
     color: #64748B;
-    margin-bottom: 40px;
+    margin-bottom: 5px;
   }
 }
 
@@ -191,7 +190,7 @@ swiper-slide {
   display: flex;
   justify-content: space-around;
   padding: 0 24px;
-  margin-bottom: 32px;
+  margin: 10px;
 
 .btn-change-card {
   --icon-bg: #0f2847;
@@ -221,7 +220,6 @@ swiper-slide {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 16px;
 
     h2 {
       font-family: 'Manrope', sans-serif;

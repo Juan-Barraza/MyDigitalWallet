@@ -20,7 +20,6 @@ export class Userservice {
 
   async fetchUserProfile(): Promise<UserProfile | null> {
     const currentUser = this.authService.getCurrentUser();
-    console.log('Current user:', currentUser);
     if (!currentUser) return null;
 
 

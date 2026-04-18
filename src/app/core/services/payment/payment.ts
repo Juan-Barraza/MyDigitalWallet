@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
 import { faker } from '@faker-js/faker';
-import { Timestamp } from 'firebase/firestore';
+import { limit, Timestamp } from 'firebase/firestore';
 import { FirestoreService } from '../firestore/firestore';
-import { NotificationService } from '../notification/notification';
 import { BiometricService } from '../biometric/biometric';
-import { AuthService } from '../auth/auth';
 import { Transaction } from '../../models/transaction.model';
 import { Card } from '../../models/card.model';
+import { orderBy, where } from '@angular/fire/firestore';
 
 
 export interface PaymentSimulation {
@@ -94,6 +93,19 @@ export class PaymentService {
   getTransactionsByUser(uid: string) {
     return this.firestoreService.getCollection('transactions', 'uid', uid);
   }
+
+
+  async getResentTransactions(uid: string, limitCount: number = 3, cardId?: string): Promise<Transaction[]> {
+    const constraints = [
+      where('uid', '==', uid),
+      where('cardId', '==', cardId || ''),
+      orderBy('date', 'desc'),
+      limit(limitCount),
+    ];
+
+    return this.firestoreService.queryCollection<Transaction>('transactions', ...constraints);
+  }
+
 
   async updateEmoji(transactionId: string, emoji: string): Promise<void> {
     await this.firestoreService.updateDocument('transactions', transactionId, { emoji });

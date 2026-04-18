@@ -21,11 +21,12 @@
 
     @if (state === 'idle' || state === 'processing') {
 
-    <div class="merchant-info">
-      <h2 class="merchant-name">{{ simulation.merchant }}</h2>
-      <p class="merchant-category">{{ simulation.merchantCategory }}</p>
-      <p class="amount">${{ simulation.amount | number:'1.2-2' }}</p>
-    </div>
+    <app-balance-display
+      [name]="simulation.merchant"
+      [category]="simulation.merchantCategory"
+      [amount]="simulation.amount"
+    >
+    </app-balance-display>
 
     @if (activeCard) {
     <div class="card-preview">
