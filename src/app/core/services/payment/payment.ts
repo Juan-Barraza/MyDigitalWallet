@@ -95,7 +95,7 @@ export class PaymentService {
   }
 
 
-  async getResentTransactions(uid: string, limitCount: number = 4, cardId?: string): Promise<Transaction[]> {
+  async getResentTransactions(uid: string, limitCount: number = 3, cardId?: string): Promise<Transaction[]> {
     const constraints = [
       where('uid', '==', uid),
       where('cardId', '==', cardId || ''),

@@ -64,10 +64,6 @@ export class HomePage implements OnInit, OnDestroy {
     this.activeCard = this.cards[swiper.activeIndex];
   }
 
-  onSetDefault() {
-    // Marcar tarjeta como default
-  }
-
   onChangeCard() {
     // Abrir modal o navegar
   }
@@ -156,7 +152,7 @@ export class HomePage implements OnInit, OnDestroy {
       return;
     }
     this.loadingTransactions = true;
-    this.transactions = await this.paymentService.getResentTransactions(uid, 4, this.activeCard?.id);
+    this.transactions = await this.paymentService.getResentTransactions(uid, 3, this.activeCard?.id);
     this.loadingTransactions = false;
   }
 
