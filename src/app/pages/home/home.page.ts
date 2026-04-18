@@ -14,6 +14,7 @@ import { NotificationService } from 'src/app/core/services/notification/notifica
 import { PaymentService } from 'src/app/core/services/payment/payment';
 import { Transaction } from 'src/app/core/models/transaction.model';
 import { ChangecardModalComponent } from 'src/app/shared/components/changecard-modal/changecard-modal.component';
+import { ExpensesModalComponent } from 'src/app/shared/components/expenses-modal/expenses-modal.component';
 
 @Component({
   selector: 'app-home',
@@ -94,8 +95,19 @@ export class HomePage implements OnInit, OnDestroy {
     this.router.navigate(['/add-card']);
   }
 
-  onViewAll() {
-    // Navegar a historial completo
+  async onViewAll() {
+    const uid = this.authservice.getCurrentUser()?.uid;
+    if (!uid) return;
+    const modal = await this.modalControl.create({
+      component: ExpensesModalComponent,
+      componentProps: {
+        cards: this.cards,
+        activeCard: this.activeCard,
+        uid,
+        cssClass: 'fullscreen-modal',
+      }
+    });
+    await modal.present();
   }
 
   async onProfile() {

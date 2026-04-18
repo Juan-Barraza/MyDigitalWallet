@@ -2,7 +2,7 @@ import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'com.mywallet.digital',
-  appName: 'My Digital Wallet',
+  appName: 'MyDigitalWallet',
   webDir: 'www',
   plugins: {
     SplashScreen: {

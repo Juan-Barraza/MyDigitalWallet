@@ -1,0 +1,125 @@
+<div class="modal-wrapper">
+  <div class="modal-header">
+    <span class="modal-title">Total Expenses</span>
+    <button class="close-btn" (click)="dismiss()">CLOSE</button>
+  </div>
+
+  <div class="account-section">
+    <p class="section-label">Choose Account</p>
+    <div class="account-chip">
+      <div class="account-chip__icon">
+        <ion-icon name="card-outline"></ion-icon>
+      </div>
+      <div class="account-chip__info">
+        <span class="chip-name">{{ selectedCard?.cardholderName }}</span>
+        <span class="chip-number"
+          >···· ···· ···· {{ selectedCard?.cardNumber }}</span
+        >
+      </div>
+      <button class="chip-change-btn" (click)="onChangeCard()">
+        Change <ion-icon name="chevron-down-outline"></ion-icon>
+      </button>
+    </div>
+  </div>
+
+  <div class="spend-section">
+    <p class="spend-label">Total Spend (By Card)</p>
+    <p class="spend-amount">${{ totalSpend | number : "1.2-2" }}</p>
+  </div>
+
+  <div class="calendar-section">
+    <div class="cal-nav">
+      <span class="cal-nav__label">
+        {{ monthLabel }}
+        <ion-icon name="caret-down-outline"></ion-icon>
+      </span>
+      <div class="cal-nav__arrows">
+        <ion-button (click)="prevMonth()">
+          <ion-icon name="chevron-back-outline"></ion-icon>
+        </ion-button>
+        <ion-button (click)="nextMonth()">
+          <ion-icon name="chevron-forward-outline"></ion-icon>
+        </ion-button>
+      </div>
+    </div>
+
+    <div class="cal-grid">
+      @for (wd of weekdays; track $index) {
+      <div class="cal-weekday">{{ wd }}</div>
+      } @for (day of calendarDays; track $index) {
+      <button
+        class="cal-day"
+        [class.empty]="!day"
+        [class.today]="isToday(day)"
+        [class.selected]="isSelected(day)"
+        [class.has-tx]="hasTransactions(day)"
+        (click)="selectDay(day)"
+      >
+        <span>{{ day ? day.getDate() : "" }}</span>
+        @if (day && hasTransactions(day) && !isSelected(day)) {
+        <span class="tx-dot"></span>
+        }
+      </button>
+      }
+    </div>
+  </div>
+
+  <div class="tx-section">
+    @if (loadingTx) { @for (i of [1,2,3]; track $index) {
+    <div class="tx-skeleton"></div>
+    } } @else if (filteredTransactions.length === 0) {
+    <div class="tx-empty">
+      <ion-icon name="receipt-outline"></ion-icon>
+      <p>No transactions for this day</p>
+    </div>
+    } @else { @for (tx of filteredTransactions; track tx.id) {
+    <div
+      class="tx-item"
+      (touchstart)="onLongPressStart(tx)"
+      (touchend)="onLongPressEnd(tx)"
+      (mousedown)="onLongPressStart(tx)"
+      (mouseup)="onLongPressEnd(tx)"
+      (mouseleave)="onLongPressEnd(tx)"
+    >
+      <div class="tx-icon">
+        @if (tx.emoji) {
+        <span class="tx-emoji">{{ tx.emoji }}</span>
+        } @else {
+        <ion-icon name="storefront-outline"></ion-icon>
+        }
+      </div>
+      <div class="tx-info">
+        <p class="tx-merchant">{{ tx.merchant }}</p>
+        <p class="tx-time">{{ formatTime(tx.date) }}</p>
+      </div>
+      <div class="tx-right">
+        <span class="tx-amount">${{ tx.amount | number : "1.2-2" }}</span>
+        @if (tx.emoji) {
+        <span class="tx-emoji-badge">{{ tx.emoji }}</span>
+        }
+      </div>
+    </div>
+    } }
+  </div>
+
+  <p class="footer-hint">
+    Long press an expense for 2 seconds to add a reaction.
+  </p>
+</div>
+
+@if (emojiPickerOpenForId) {
+<div class="emoji-overlay" (click)="closeEmojiPicker()">
+  <div class="emoji-picker-wrapper" (click)="$event.stopPropagation()">
+    <emoji-mart
+      [darkMode]="false"
+      [showPreview]="false"
+      [isNative]="false"
+      set="google"
+      [perLine]="9"
+      [emojiSize]="30"
+      title="Pick an emoji"
+      (emojiSelect)="onEmojiSelect($event, getCurrentTx())"
+    ></emoji-mart>
+  </div>
+</div>
+}
