@@ -57,6 +57,10 @@ export class HomePage implements OnInit, OnDestroy {
     await this.loadTransactions();
   }
 
+  async ionViewWillEnter() {
+    await this.loadTransactions();
+  }
+
 
 
   onCardChange(event: any) {
