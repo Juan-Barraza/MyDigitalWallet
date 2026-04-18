@@ -1,0 +1,133 @@
+.tx-container {
+  padding: 0 4px;
+}
+
+.tx-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.tx-title {
+  font-family: 'Manrope', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #F5F7FA;
+  margin: 0;
+}
+
+.tx-view-all {
+  font-size: 12px;
+  font-weight: 500;
+  color: #00E5FF;
+  cursor: pointer;
+}
+
+.tx-skeleton {
+  height: 66px;
+  border-radius: 14px;
+  background: linear-gradient(90deg, #0D1F35 25%, #102440 50%, #0D1F35 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+  margin-bottom: 8px;
+}
+
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.tx-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 14px;
+  background: #0A192F;
+  border-radius: 14px;
+  margin-bottom: 8px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: background 0.2s;
+
+  &:last-child { margin-bottom: 0; }
+  &:hover { background: #102440; }
+}
+
+.tx-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: #0A2744;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 18px;
+
+  ion-icon {
+    font-size: 18px;
+    color: #00E5FF;
+    opacity: 0.85;
+  }
+}
+
+.tx-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.tx-merchant {
+  font-size: 13px;
+  font-weight: 500;
+  color: #E8F0FF;
+  margin: 0 0 3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tx-date {
+  font-size: 11px;
+  color: #4A6285;
+  margin: 0;
+}
+
+.tx-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.tx-amount {
+  font-family: 'Manrope', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #F5F7FA;
+  white-space: nowrap;
+}
+
+.tx-chip {
+  font-size: 10px;
+  color: #00E5FF;
+  background: rgba(0, 229, 255, 0.08);
+  border-radius: 6px;
+  padding: 2px 7px;
+  font-weight: 500;
+}
+
+.tx-empty {
+  text-align: center;
+  padding: 28px 0;
+  color: #4A6285;
+
+  ion-icon {
+    font-size: 32px;
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  p { font-size: 13px; margin: 0; }
+}

@@ -7,6 +7,7 @@ import { ButtonComponent } from './components/button/button.component';
 import { ProfileModalComponent } from './components/profile-modal/profile-modal.component';
 import { CardComponent } from './components/card/card.component';
 import { BalanceDisplayComponent } from './components/balance-display/balance-display.component';
+import { TransactionListComponent } from './components/transaction-list/transaction-list.component';
 
 
 
@@ -17,6 +18,7 @@ import { BalanceDisplayComponent } from './components/balance-display/balance-di
     ProfileModalComponent,
     CardComponent,
     BalanceDisplayComponent,
+    TransactionListComponent,
   ],
   imports: [
     CommonModule,
@@ -30,6 +32,7 @@ import { BalanceDisplayComponent } from './components/balance-display/balance-di
     ProfileModalComponent,
     CardComponent,
     BalanceDisplayComponent,
+    TransactionListComponent,
   ]
 })
 export class SharedModule { }

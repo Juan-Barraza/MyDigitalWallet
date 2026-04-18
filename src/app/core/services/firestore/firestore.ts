@@ -9,7 +9,9 @@ import {
   collection,
   collectionData,
   query,
-  where
+  where,
+  QueryConstraint,
+  getDocs
 } from '@angular/fire/firestore';
 
 @Injectable({
@@ -45,5 +47,12 @@ export class FirestoreService {
     return collectionData(q, { idField: 'id' });
   }
 
+
+   async queryCollection<T>(path: string, ...constraints: QueryConstraint[]): Promise<T[]> {
+    const ref = collection(this.firestore, path);
+    const q = query(ref, ...constraints);
+    const snap = await getDocs(q);
+    return snap.docs.map(d => ({ id: d.id, ...d.data() } as T));
+  }
 
 }

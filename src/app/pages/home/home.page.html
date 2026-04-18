@@ -110,12 +110,10 @@
       <span (click)="onViewAll()">View All</span>
     </div>
 
-    @if (transactions.length === 0) {
-    <p class="no-transactions">No transactions with this selected card.</p>
-    } @else {
-    <!-- @for (tx of transactions; track tx.id) {
-        <app-transaction-item [transaction]="tx"></app-transaction-item>
-      } -->
-    }
+    <app-transaction-list
+      [transactions]="transactions"
+      [loading]="loadingTransactions"
+    ></app-transaction-list>
+    
   </div>
 </ion-content>

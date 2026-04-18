@@ -11,6 +11,8 @@ import { CardService } from 'src/app/core/services/cardservice/cardservice';
 import { Card } from 'src/app/core/models/card.model';
 import { AlertController } from '@ionic/angular';
 import { NotificationService } from 'src/app/core/services/notification/notification';
+import { PaymentService } from 'src/app/core/services/payment/payment';
+import { Transaction } from 'src/app/core/models/transaction.model';
 
 @Component({
   selector: 'app-home',
@@ -21,9 +23,10 @@ import { NotificationService } from 'src/app/core/services/notification/notifica
 export class HomePage implements OnInit, OnDestroy {
 
   userName$!: Observable<string>;
-  cards: any[] = [];
-  transactions: any[] = [];
-  activeCard: any = null;
+  cards: Card[] = [];
+  transactions: Transaction[] = [];
+  activeCard: Card | null = null;
+  loadingTransactions = false;
   private cardsSubscription?: Subscription;
 
   slideOpts = {
@@ -41,6 +44,7 @@ export class HomePage implements OnInit, OnDestroy {
     private cardService: CardService,
     private alertCtr: AlertController,
     private notificationService: NotificationService,
+    private paymentService: PaymentService,
   ) { }
 
   async ngOnInit() {
@@ -49,8 +53,8 @@ export class HomePage implements OnInit, OnDestroy {
       map(profile => profile ? profile.first_name : 'Guest')
     );
     this.loadCards();
-    await this.loadTransactions();
     await this.userService.fetchUserProfile();
+    await this.loadTransactions();
   }
 
 
@@ -146,8 +150,14 @@ export class HomePage implements OnInit, OnDestroy {
   }
 
   private async loadTransactions() {
-    // Después conectamos con TransactionService
-    this.transactions = [];
+    const uid = this.authservice.getCurrentUser()?.uid;
+    if (!uid) {
+      console.error('No user ID found');
+      return;
+    }
+    this.loadingTransactions = true;
+    this.transactions = await this.paymentService.getResentTransactions(uid, 4, this.activeCard?.id);
+    this.loadingTransactions = false;
   }
 
   private async setUserIdToSaveNotificaion() {
