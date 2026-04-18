@@ -1,0 +1,43 @@
+<ion-content class="ion-padding">
+  <div class="modal-header">
+    <h2>Change Card</h2>
+    <ion-button (click)="dismiss()">
+      <ion-back-button defaultHref="/" text="" mode="md"></ion-back-button>
+    </ion-button>
+  </div>
+
+  <div class="card-list">
+    @for (card of cards; track $index) {
+    <div
+      class="card-selectable-wrapper"
+      [class.is-selected]="isSelected(card)"
+      (click)="selectCard(card)"
+    >
+      <app-card
+        [cardholderName]="card.cardholderName"
+        [lastFour]="card.cardNumber"
+        [expiryDate]="card.expiryDate"
+        [brand]="card.brand"
+        mode="saved"
+      >
+      </app-card>
+
+      <div class="card-meta">
+        <p class="card-name">{{ card.cardholderName }}</p>
+        <p class="card-sub">
+          {{ card.brand }} · {{ card.cardNumber }}
+          @if (card.isDefault) {
+          <span class="default-badge">Default</span>
+          }
+        </p>
+      </div>
+    </div>
+    }
+  </div>
+
+  <div class="set-default-card">
+    <ion-button expand="block" (click)="onSetAsDefault()"
+      >Set as Default</ion-button
+    >
+  </div>
+</ion-content>

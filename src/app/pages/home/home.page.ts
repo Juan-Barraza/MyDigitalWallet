@@ -13,6 +13,7 @@ import { AlertController } from '@ionic/angular';
 import { NotificationService } from 'src/app/core/services/notification/notification';
 import { PaymentService } from 'src/app/core/services/payment/payment';
 import { Transaction } from 'src/app/core/models/transaction.model';
+import { ChangecardModalComponent } from 'src/app/shared/components/changecard-modal/changecard-modal.component';
 
 @Component({
   selector: 'app-home',
@@ -28,12 +29,6 @@ export class HomePage implements OnInit, OnDestroy {
   activeCard: Card | null = null;
   loadingTransactions = false;
   private cardsSubscription?: Subscription;
-
-  slideOpts = {
-    initialSlide: 0,
-    speed: 400,
-    spaceBetween: 16,
-  };
 
   constructor(
     private userService: Userservice,
@@ -68,8 +63,27 @@ export class HomePage implements OnInit, OnDestroy {
     this.activeCard = this.cards[swiper.activeIndex];
   }
 
-  onChangeCard() {
-    // Abrir modal o navegar
+  async onChangeCard() {
+    const uid = this.authservice.getCurrentUser()?.uid;
+    if (!uid) return;
+
+    const modal = await this.modalControl.create({
+      component: ChangecardModalComponent,
+      componentProps: {
+        cards: this.cards,
+        activeCard: this.activeCard,
+        uid,
+      },
+      cssClass: 'fullscreen-modal',
+    });
+
+    await modal.present();
+
+    const { data, role } = await modal.onWillDismiss();
+    if (role === 'confirm' && data?.card) {
+      this.activeCard = data.card;
+      await this.loadTransactions();
+    }
   }
 
   onPayNow() {
