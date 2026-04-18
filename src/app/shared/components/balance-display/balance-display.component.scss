@@ -1,0 +1,25 @@
+.merchant-info {
+  text-align: center;
+  padding: 16px 0 16px; 
+
+  .merchant-name {
+    font-family: 'Manrope', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    color: #0A192F;
+    margin: 0 0 4px;
+  }
+  .merchant-category {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: #64748B;
+    margin: 0 0 12px;
+  }
+  .amount {
+    font-family: 'Manrope', sans-serif;
+    font-size: 36px;
+    font-weight: 800;
+    color: #00E5FF;
+    margin: 0;
+  }
+}

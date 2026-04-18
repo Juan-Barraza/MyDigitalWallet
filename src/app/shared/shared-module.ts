@@ -6,6 +6,7 @@ import { IonicModule } from '@ionic/angular';
 import { ButtonComponent } from './components/button/button.component';
 import { ProfileModalComponent } from './components/profile-modal/profile-modal.component';
 import { CardComponent } from './components/card/card.component';
+import { BalanceDisplayComponent } from './components/balance-display/balance-display.component';
 
 
 
@@ -15,6 +16,7 @@ import { CardComponent } from './components/card/card.component';
     ButtonComponent,
     ProfileModalComponent,
     CardComponent,
+    BalanceDisplayComponent,
   ],
   imports: [
     CommonModule,
@@ -27,6 +29,7 @@ import { CardComponent } from './components/card/card.component';
     ButtonComponent,
     ProfileModalComponent,
     CardComponent,
+    BalanceDisplayComponent,
   ]
 })
 export class SharedModule { }
