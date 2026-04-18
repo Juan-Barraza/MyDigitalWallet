@@ -9,7 +9,8 @@ import { CardComponent } from './components/card/card.component';
 import { BalanceDisplayComponent } from './components/balance-display/balance-display.component';
 import { TransactionListComponent } from './components/transaction-list/transaction-list.component';
 import { ChangecardModalComponent } from './components/changecard-modal/changecard-modal.component';
-
+import { ExpensesModalComponent } from './components/expenses-modal/expenses-modal.component';
+import { PickerModule } from '@ctrl/ngx-emoji-mart';
 
 
 @NgModule({
@@ -21,11 +22,13 @@ import { ChangecardModalComponent } from './components/changecard-modal/changeca
     BalanceDisplayComponent,
     TransactionListComponent,
     ChangecardModalComponent,
+    ExpensesModalComponent,
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
     IonicModule,
+    PickerModule,
   ],
   exports: [
     InputComponent,
@@ -36,6 +39,7 @@ import { ChangecardModalComponent } from './components/changecard-modal/changeca
     BalanceDisplayComponent,
     TransactionListComponent,
     ChangecardModalComponent,
+    ExpensesModalComponent,
   ]
 })
 export class SharedModule { }

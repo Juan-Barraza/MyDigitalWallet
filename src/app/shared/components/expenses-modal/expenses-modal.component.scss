@@ -1,0 +1,492 @@
+$bg:             #0A192F;
+$bg-deep:        #0f2847;
+$surface:        #ffffff;
+$page-bg:        #F5F7FA;
+$accent:         #00BCD4;   
+$text-primary:   #0A192F;
+$text-secondary: #64748B;
+$text-muted:     #94A3B8;
+$border:         #E2E8F0;
+$hover:          #F1F5F9;
+$radius-lg:      24px;
+$radius-md:      16px;
+$radius-sm:      12px;
+
+.modal-wrapper {
+  background: $page-bg;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px 16px;
+  background: $bg;
+
+  .modal-title {
+    color: #ffffff;
+    font-size: 17px;
+    font-weight: 700;
+    font-family: 'Manrope', sans-serif;
+    letter-spacing: 0.2px;
+    margin-top: 10px;
+  }
+
+  .close-btn {
+    background: transparent;
+    border: none;
+    color: $accent;     
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    padding: 6px 12px;
+    border-radius: $radius-sm;
+    border: 1px solid rgba(0, 188, 212, 0.3);
+    transition: background 0.15s, color 0.15s;
+    margin-top: 10px;
+
+
+    &:active {
+      background: rgba(0, 188, 212, 0.15);
+    }
+  }
+}
+
+// ── Account Section ────────────────────────────────────────
+.account-section {
+  background: $surface;
+  padding: 20px 24px 16px;
+  border-bottom: 1px solid $hover;
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: $text-muted;
+    letter-spacing: 1px;
+    margin: 0 0 12px;
+    text-transform: uppercase;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .account-chip {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: $page-bg;
+    border-radius: $radius-md;
+    padding: 14px 16px;
+    border: 1px solid $border;
+
+    &__icon {
+      width: 42px;
+      height: 42px;
+      border-radius: $radius-sm;
+      background: $bg;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+
+      ion-icon {
+        font-size: 20px;
+        color: #ffffff;
+      }
+    }
+
+    &__info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+
+      .chip-name {
+        font-size: 14px;
+        font-weight: 700;
+        color: $text-primary;
+        font-family: 'Manrope', sans-serif;
+      }
+
+      .chip-number {
+        font-size: 12px;
+        color: $text-muted;
+        letter-spacing: 1.5px;
+        font-family: 'Inter', sans-serif;
+      }
+    }
+
+    .chip-change-btn {
+      background: transparent;
+      border: none;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 13px;
+      font-weight: 600;
+      color: $text-primary;
+      cursor: pointer;
+      padding: 6px 10px;
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      transition: background 0.15s;
+
+      ion-icon { font-size: 14px; color: $text-secondary; }
+
+      &:active { background: $hover; }
+    }
+  }
+}
+
+// ── Spend Section ──────────────────────────────────────────
+.spend-section {
+  background: $surface;
+  padding: 28px 24px 24px;
+  text-align: center;
+  border-bottom: 1px solid $hover;
+
+  .spend-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: $text-muted;
+    margin: 0 0 10px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .spend-amount {
+    font-family: 'Manrope', sans-serif;
+    font-size: 40px;
+    font-weight: 800;
+    color: $accent;                         // #00BCD4 — cyan del proyecto
+    margin: 0;
+    // Glow sutil en cyan
+    text-shadow: 0 0 24px rgba(0, 188, 212, 0.35);
+    letter-spacing: -1px;
+  }
+}
+
+// ── Calendar Section ───────────────────────────────────────
+.calendar-section {
+  background: $surface;
+  padding: 20px 20px 24px;
+  margin: 8px 0;
+
+  // Navegacion del mes
+  .cal-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+
+    &__label {
+      background: transparent;
+      border: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 15px;
+      font-weight: 700;
+      color: $text-primary;
+      font-family: 'Manrope', sans-serif;
+      cursor: pointer;
+      padding: 0;
+      text-transform: capitalize;
+
+      ion-icon {
+        font-size: 14px;
+        color: $text-muted;
+      }
+    }
+
+    &__arrows {
+      display: flex;
+      gap: 6px;
+
+      button {
+        background: $hover;
+        border: none;
+        border-radius: 10px;
+        width: 34px;
+        height: 34px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background 0.15s, transform 0.1s;
+
+        ion-icon {
+          font-size: 16px;
+          color: $text-primary;
+        }
+
+        &:active {
+          background: $border;
+          transform: scale(0.93);
+        }
+      }
+    }
+  }
+
+  .cal-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px;
+  }
+
+  .cal-weekday {
+    text-align: center;
+    font-size: 11px;
+    font-weight: 700;
+    color: $text-muted;
+    letter-spacing: 0.5px;
+    padding: 0 0 10px;
+    font-family: 'Inter', sans-serif;
+  }
+
+  // Celda de cada dia
+  .cal-day {
+    position: relative;
+    aspect-ratio: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    border-radius: 50%;
+    font-size: 13px;
+    font-weight: 500;
+    color: $text-primary;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s, transform 0.12s;
+
+    &.empty {
+      pointer-events: none;
+    }
+
+    &:active:not(.empty) {
+      transform: scale(0.88);
+    }
+
+    &.today {
+      border: 2px solid $accent;
+      font-weight: 700;
+      color: $accent;
+    }
+
+    &.selected {
+      background: $accent;
+      color: #ffffff;
+      font-weight: 700;
+      box-shadow: 0 4px 14px rgba(0, 188, 212, 0.4);
+    }
+
+    &.today.selected {
+      border: none;
+    }
+
+    .tx-dot {
+      position: absolute;
+      bottom: 4px;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: $accent;
+    }
+  }
+}
+
+// ── Transaction List ───────────────────────────────────────
+.tx-section {
+  background: $surface;
+  padding: 8px 0;
+  flex: 1;
+}
+
+.tx-skeleton {
+  height: 68px;
+  margin: 8px 24px;
+  border-radius: $radius-md;
+  background: linear-gradient(
+    90deg,
+    $hover 25%,
+    $border 50%,
+    $hover 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+}
+
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+// Estado vacio
+.tx-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 48px 24px;
+  color: $text-muted;
+
+  ion-icon {
+    font-size: 40px;
+    color: $border;
+  }
+
+  p {
+    font-size: 14px;
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+// Item de transaccion
+.tx-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 24px;
+  border-bottom: 1px solid #f8fafc;
+  cursor: pointer;
+  transition: background 0.15s;
+  user-select: none;
+  -webkit-user-select: none;
+
+  &:active {
+    background: $page-bg;
+  }
+
+  .tx-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 14px;
+    background: $hover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background 0.15s;
+
+    ion-icon {
+      font-size: 20px;
+      color: $text-secondary;
+    }
+
+    .tx-emoji {
+      font-size: 22px;
+      line-height: 1;
+    }
+  }
+
+  // Nombre + hora
+  .tx-info {
+    flex: 1;
+    min-width: 0;
+
+    .tx-merchant {
+      font-size: 14px;
+      font-weight: 600;
+      color: $text-primary;
+      margin: 0 0 3px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-family: 'Manrope', sans-serif;
+    }
+
+    .tx-time {
+      font-size: 11px;
+      color: $text-muted;
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+    }
+  }
+
+  .tx-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+    flex-shrink: 0;
+
+    .tx-amount {
+      font-size: 15px;
+      font-weight: 700;
+      color: $text-primary;
+      font-family: 'Manrope', sans-serif;
+    }
+
+    .tx-emoji-badge {
+      font-size: 16px;
+    }
+  }
+}
+.emoji-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 25, 47, 0.55);   
+  z-index: 1000;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  animation: overlayIn 0.18s ease;
+}
+
+@keyframes overlayIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.emoji-picker-wrapper {
+  width: 100%;
+  max-width: 420px;
+  border-radius: 24px 24px 0 0;
+  overflow: hidden;
+  animation: sheetUp 0.24s cubic-bezier(0.34, 1.4, 0.64, 1);
+
+  emoji-mart {
+    width: 100% !important;
+    border: none !important;
+  }
+
+  // Ajustes específicos para el emoji picker
+  ::ng-deep {
+    .emoji-mart {
+      width: 100% !important;
+      max-width: 100% !important;
+    }
+    .emoji-mart-scroll {
+      height: 320px !important;  
+    }
+    .emoji-mart-emoji span {
+      width: 32px !important;
+      height: 32px !important;
+    }
+  }
+}
+
+@keyframes sheetUp {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0); }
+}
+
+.footer-hint {
+  text-align: center;
+  font-size: 12px;
+  color: $text-muted;
+  padding: 14px 24px 32px;
+  background: $surface;
+  margin: 0;
+  font-style: italic;
+  font-family: 'Inter', sans-serif;
+  border-top: 1px solid $hover;
+}
