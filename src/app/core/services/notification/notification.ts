@@ -28,7 +28,7 @@ export class NotificationService {
       console.warn('The user granted permission to receive push notifications');
       return;
     };
-
+    await PushNotifications.removeAllListeners();
     console.log(JSON.stringify('Permission granted for push notifications'));
     PushNotifications.addListener('registration', async (token: Token) => {
       this.fcmToken = token.value;
@@ -39,7 +39,7 @@ export class NotificationService {
       console.error('Registration error:', error);
     });
 
-     PushNotifications.addListener('pushNotificationReceived', async (notification) => {
+    PushNotifications.addListener('pushNotificationReceived', async (notification) => {
       await LocalNotifications.schedule({
         notifications: [{
           id: Math.floor(Math.random() * 100000),
