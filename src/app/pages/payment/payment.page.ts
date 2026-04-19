@@ -44,8 +44,8 @@ export class PaymentPage implements OnInit {
     const uid = this.authService.getCurrentUser()?.uid;
     if (uid) {
       const cards = await firstValueFrom(this.cardService.getUserCards(uid));
-      this.activeCard = (cards as Card[]).find(c => c.isDefault) 
-        || (cards as Card[])[0] 
+      this.activeCard = (cards as Card[]).find(c => c.isDefault)
+        || (cards as Card[])[0]
         || null;
     }
   }
@@ -75,10 +75,7 @@ export class PaymentPage implements OnInit {
       this.state = 'success';
 
       const profile = await firstValueFrom(this.userService.userProfile$) as any;
-      console.log('PROFILE PAYMENT: ', JSON.stringify(profile));
-      console.log('PROFILE FMCTOKEN 1: ', JSON.stringify(profile.fcmToken));
       if (profile?.fcmToken) {
-        console.log('PROFILE FMCTOKEN 2: ', JSON.stringify(profile.fcmToken));
         await this.notificationService.sendNotification(
           profile.fcmToken,
           this.simulation.merchant,
