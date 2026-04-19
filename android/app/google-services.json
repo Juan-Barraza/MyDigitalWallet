@@ -1,41 +1,41 @@
 {
   "project_info": {
-    "project_number": "199278238464",
-    "project_id": "wallet-4a7e5",
-    "storage_bucket": "wallet-4a7e5.firebasestorage.app"
+    "project_number": "538833798551",
+    "project_id": "mywallet-2bf24",
+    "storage_bucket": "mywallet-2bf24.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:199278238464:android:a75a5c42e4e082e4c8b1e5",
+        "mobilesdk_app_id": "1:538833798551:android:ef54d0b4c7e85163b930d2",
         "android_client_info": {
           "package_name": "com.mywallet.digital"
         }
       },
       "oauth_client": [
         {
-          "client_id": "199278238464-19ipvb2q4sv78t8dsgku88kovg5uv60k.apps.googleusercontent.com",
+          "client_id": "538833798551-d94gp1rtq0j2r94blch9qao7n445k07s.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.mywallet.digital",
-            "certificate_hash": "e1cd2797bbabef95a875dcf4ba45206a7b1b69d2"
+            "certificate_hash": "c67a8f215557163387bfc6bfdd245a19de25f0c5"
           }
         },
         {
-          "client_id": "199278238464-a19dhulqonkdbj8kl32hnh2slh4ec6t4.apps.googleusercontent.com",
+          "client_id": "538833798551-o5ou6hunohf4gnc1ne3k1gbicns7q05n.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAy5UTdafoKBJyNakbR_mdd704l7TKCkZg"
+          "current_key": "AIzaSyAePdfPUVTtadeV3qdEut-lJkTuHwL0Umg"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "199278238464-a19dhulqonkdbj8kl32hnh2slh4ec6t4.apps.googleusercontent.com",
+              "client_id": "538833798551-o5ou6hunohf4gnc1ne3k1gbicns7q05n.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
